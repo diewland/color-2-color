@@ -1,0 +1,21 @@
+<script type='text/javascript' src='c2c.js'></script>
+<script type='text/javascript'>
+	function run(){
+		// get doms
+		var out = document.getElementById('out');
+		var c1 = document.getElementById('c1').value;
+		var c2 = document.getElementById('c2').value;
+		// execute
+		var colors = color2color.go(c1, c2);
+		// append to div
+		out.innerHTML = '';
+		for(var i=0; i<colors.length; i++){
+			c = colors[i];
+			out.innerHTML += '<div style="background-color:#'+ c +'">'+ c +'</div>';
+		}
+	}
+</script>
+#<input id='c1' type='text' size='6' maxlength='6' value='FFCC33' /> to
+#<input id='c2' type='text' size='6' maxlength='6' value='339900' />
+<input type='button' value='Start!' onclick='run();'>
+<div id='out'></div>
