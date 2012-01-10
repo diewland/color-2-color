@@ -1,14 +1,16 @@
 var color2color = {
 	// ------- PUBLIC --------------------------------------------
 	go: function(c1, c2){
+		// lower case base
+		c1 = c1.toLowerCase();
+		c2 = c2.toLowerCase();
+
+		// validate
 		var check_validate = (this._validate(c1)) && (this._validate(c2));
 		if(!check_validate){
 			console.error('invalid color code.');
 			return [];
 		}
-
-		// detect up or down
-		var action = c1 > c2 ? 'down' : 'up';
 
 		// core process
 		colors = [ c1 ];
@@ -18,7 +20,7 @@ var color2color = {
 			for(var i=0; i<6; i++){
 				var c1i = c1[i];
 				var c2i = c2[i];
-				c1_buff += this._move(action, c1i, c2i);
+				c1_buff += this._move(c1i, c2i);
 			}
 			c1 = c1_buff;
 			colors.push( c1 );
@@ -35,11 +37,19 @@ var color2color = {
 		*/
 		return true;
 	},
-	_move: function(action, x, y){
+	_move: function(x, y){
+		return x == y
+				? y
+				: x < y
+					? (parseInt('0x'+x)+1).toString(16)
+					: (parseInt('0x'+x)-1).toString(16);
+		/*
+		var action = x > y ? 'down' : 'up';
 		return x == y
 				? y
 				: action == 'up'
 					? x > y ? y : (parseInt('0x'+x)+1).toString(16)
 					: x < y ? y : (parseInt('0x'+x)-1).toString(16);
+		*/
 	}
 }
