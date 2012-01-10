@@ -28,7 +28,7 @@ var color2color = {
 	},
 	// ------- PRIVATE --------------------------------------------
 	_validate: function(color_code){
-		// TODO implement ???
+		// TODO ??? how to implement ???
 		/*
 		var color_int = parseInt('0x'+color_code);
 		return ( 0x000000 <= color_int ) && ( color_int <= 0xFFFFFF );
@@ -36,25 +36,10 @@ var color2color = {
 		return true;
 	},
 	_move: function(action, x, y){
-		if( x == y ){
-			return y;
-		}
-		else {
-			if(action == 'up'){
-				if( x > y ){
-					return y;
-				}
-				else {
-					return (parseInt('0x'+x)+1).toString(16);
-				}
-			} else { // down
-				if( x < y ){
-					return y;
-				}
-				else {
-					return (parseInt('0x'+x)-1).toString(16);
-				}
-			}
-		}
+		return x == y
+				? y
+				: action == 'up'
+					? x > y ? y : (parseInt('0x'+x)+1).toString(16)
+					: x < y ? y : (parseInt('0x'+x)-1).toString(16);
 	}
 }
