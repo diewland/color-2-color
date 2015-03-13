@@ -1,0 +1,1 @@
+RGB code generator from color A to color B.
